@@ -8,8 +8,19 @@ This file is a module that defines functions used for Mist WLAN operations
 import requests
 import json
 
-# Check if the WLAN already exist
+
 def does_wlan_exist(configs, site_id, band):
+    """
+    Check if the WLAN already exist
+
+    Parameters:
+        - configs: Dictionary containing all configurations information
+        - site_id: ID of the site the WLAN is part of
+        - band: 2.4 of 5 depending on which band we want to validate
+
+    Returns:
+        - The ID of the WLAN if it exists
+    """
     api_url = '{0}sites/{1}/wlans'.format(configs['api']['mist_url'],site_id)
     headers = {'Content-Type': 'application/json',
                 'Authorization': 'Token {}'.format(configs['api']['token'])}
@@ -31,8 +42,18 @@ def does_wlan_exist(configs, site_id, band):
         print('Something went wrong: {}'.format(response.status_code))
 
 
-# This function creates a new WLAN
 def create_wlan(site_id, configs, band):
+    """
+    This function creates a new WLAN
+
+    Parameters:
+        - configs: Dictionary containing all configurations information
+        - site_id: ID of the site we want to create the WLAN in
+        - band: 2.4 of 5 depending on which band we want to create the WLAN on
+
+    Returns:
+        - The ID of the newly create WLAN
+    """
     wlan = {}
     wlan['enabled'] = 'true'
     wlan['type'] = 'open'
