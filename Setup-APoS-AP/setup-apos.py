@@ -39,20 +39,20 @@ def main():
         wlan_5ghz_id = MistWlan.create_wlan(site_id, configs, '5')                       # Create a new 5GHz WLAN
 
     if MistAp.has_been_claimed(configs) is False:
-        MistAp.claim_ap(configs)                                                       # Claim AP to Org if necessary
+        MistAp.claim_ap(configs)                                                         # Claim AP to Org if necessary
 
-    survey_ap_id = MistAp.is_ap_in_site(configs, site_id)                              # Validate if the AP is already assign to site
+    survey_ap_id = MistAp.is_ap_in_site(configs, site_id)                                # Validate if the AP is already assign to site
     if survey_ap_id is None:
-        survey_ap_id = MistAp.provision_ap(configs, site_id)                           # Assigns the AP to the APoS Site
+        survey_ap_id = MistAp.provision_ap(configs, site_id)                             # Assigns the AP to the APoS Site
 
     survey_ap_id = MistSite.get_device_id(configs, configs['ap']['mac'], site_id)
-    MistAp.config_radio(configs, site_id, survey_ap_id, '24')                          # Configure 2.4GHz Radio of the APoS survey AP
-    MistAp.config_radio(configs, site_id, survey_ap_id, '5')                           # Configure 5GHz Radio of the APoS survey AP
+    MistAp.config_radio(configs, site_id, survey_ap_id, '24')                            # Configure 2.4GHz Radio of the APoS survey AP
+    MistAp.config_radio(configs, site_id, survey_ap_id, '5')                             # Configure 5GHz Radio of the APoS survey AP
 
 
 if __name__ == '__main__':
     start_time = time.time()
-    print('** Setting up APoS AP')
+    print('** Setting up APoS AP\n')
     main()
     run_time = time.time() - start_time
-    print("** Time to run: %s sec" % round(run_time,2))
+    print("\n** Time to run: %s sec" % round(run_time,2))
