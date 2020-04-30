@@ -9,8 +9,16 @@ import requests
 import json
 
 
-# Check if the APoS site already exist
 def does_site_exist(configs):
+    """
+    Check if the APoS site already exist
+
+    Parameters:
+        - configs: Dictionary containing all configurations information
+
+    Returns:
+        - The ID of the site if it exists
+    """
     api_url = '{0}orgs/{1}/sites'.format(configs['api']['mist_url'],configs['api']['org_id'])
     headers = {'Content-Type': 'application/json',
                 'Authorization': 'Token {}'.format(configs['api']['token'])}
@@ -26,8 +34,16 @@ def does_site_exist(configs):
         print('Something went wrong: {}'.format(response.status_code))
 
 
-# This function creates a new Site
 def create_new_site(configs):
+    """
+    This function creates a new Site based on the information located in configs
+
+    Parameters:
+        - configs: Dictionary containing all configurations information
+
+    Returns:
+        - The ID of the newly created site
+    """
     apos_site = {}
     apos_site['name'] = configs['site']['name']
     apos_site['timezone'] = configs['site']['timezone']
@@ -51,8 +67,16 @@ def create_new_site(configs):
     return (new_site['id'])
 
 
-# This function Enable the AP Config Persistence feature of a site
 def enable_config_persistence(new_site_id, configs):
+    """
+    This function Enable the AP Config Persistence feature of a site
+
+    Parameters:
+        - configs: Dictionary containing all configurations information
+        - new_site_id: ID of the newly created site
+
+    Returns:N/A
+    """
     data_put = '{"persist_config_on_device": true}'
     api_url = '{0}sites/{1}/setting'.format(configs['api']['mist_url'], new_site_id)
     headers = {'Content-Type': 'application/json',
@@ -62,8 +86,18 @@ def enable_config_persistence(new_site_id, configs):
         print('Something went wrong: {}'.format(response.status_code))
 
 
-# This function returns the device ID based on the device MAC address
 def get_device_id(configs, device_mac, site_id):
+    """
+    This function returns the device ID based on the device MAC address
+
+    Parameters:
+        - configs: Dictionary containing all configurations information
+        - device_mac: mac address of the device
+        - site_id: ID of the site the device is in
+
+    Returns:
+        - The ID of the device associated with the mac address if the device is in the site
+    """
     api_url = '{0}sites/{1}/devices'.format(configs['api']['mist_url'],site_id)
     headers = {'Content-Type': 'application/json',
                 'Authorization': 'Token {}'.format(configs['api']['token'])}
