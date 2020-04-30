@@ -7,7 +7,8 @@ Created on: April 30, 2020
 This script configured a Mist AP for an AP-on-a-Stick site survey
 """
 
-from optparse import OptionParser
+# from optparse import OptionParser
+import argparse
 import time
 import json
 import requests
@@ -18,12 +19,16 @@ import MistAp
 
 
 def main():
-    parser = OptionParser(usage='usage: %prog config-file')
-    (options, args) = parser.parse_args()
-    if len(args) != 1:
-        parser.error('Wrong number of arguments')
-    with open(args[0], 'r') as f:
-     configs = json.load(f)
+    """
+    This function configures a Mist AP for an APoS site survey, which includes:
+        - The creation of a specific site that will be used to configure the AP
+        - The creation of specific survey SSIDs on both frequency bands
+        - The configuration of both 2.4GHz and 5GHz radios based on the config file
+    """
+    parser = argparse.ArgumentParser(description='Configures a Mist AP for an APoS site survey')
+    parser.add_argument('config', metavar='config_file', type=argparse.FileType('r'), help='file containing all the configuration information')
+    args = parser.parse_args()
+    configs = json.load(args.config)
 
     site_id = MistSite.does_site_exist(configs)                                          # Validate if the APoS site already exist
     if site_id is None:
@@ -55,4 +60,5 @@ if __name__ == '__main__':
     print('** Setting up APoS AP\n')
     main()
     run_time = time.time() - start_time
-    print("\n** Time to run: %s sec" % round(run_time,2))
+    print("")
+    print("** Time to run: %s sec" % round(run_time,2))

@@ -9,12 +9,13 @@ import requests
 import json
 
 
-def does_site_exist(configs):
+def does_site_exist(configs, verbose=True):
     """
     Check if the APoS site already exist
 
     Parameters:
         - configs: Dictionary containing all configurations information
+        - verbose: Display output messages (Default = True)
 
     Returns:
         - The ID of the site if it exists
@@ -28,7 +29,8 @@ def does_site_exist(configs):
         sites = json.loads(response.content.decode('utf-8'))
         for site in sites:
             if site['name'] == configs['site']['name']:
-                print('{0} site already exist.\t\t\t\tSITE ID={1}'.format(configs['site']['name'], site['id']))
+                if (verbose):
+                    print('{0} site already exist.\t\t\t\tSITE ID={1}'.format(configs['site']['name'], site['id']))
                 return (site['id'])
     else:
         print('Something went wrong: {}'.format(response.status_code))
