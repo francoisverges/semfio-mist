@@ -35,8 +35,17 @@ def is_ap_in_site(configs, site_id):
         print('Something went wrong: {}'.format(response.status_code))
 
 
-# This function check if an AP has been claimed
 def has_been_claimed(configs):
+    """
+    This function check if an AP has been claimed
+
+    Parameters:
+        - configs: Dictionary containing all configurations information
+
+    Returns:
+        - True is the AP has already been claimed
+        - False is the AP has not been claimed yet
+    """
     api_url = '{0}installer/orgs/{1}/devices'.format(configs['api']['mist_url'], configs['api']['org_id'])
     headers = {'Content-Type': 'application/json',
                 'Authorization': 'Token {}'.format(configs['api']['token'])}
@@ -55,8 +64,16 @@ def has_been_claimed(configs):
     return (False)
 
 
-# This function claims an AP to an organization
 def claim_ap(configs):
+    """
+    This function claims an AP to an organization
+
+    Parameters:
+        - configs: Dictionary containing all configurations information
+
+    Returns: N/A
+    """
+
     data_post = '["{}"]'.format(configs['ap']['claim-code'])
     api_url = '{0}orgs/{1}/inventory'.format(configs['api']['mist_url'], configs['api']['org_id'])
     headers = {'Content-Type': 'application/json',
@@ -70,8 +87,18 @@ def claim_ap(configs):
         print('Something went wrong: {}'.format(response.status_code))
 
 
-# This function configure radio settings of an AP
 def config_radio(configs, site_id, device_id, band):
+    """
+    This function configure radio settings of an AP
+
+    Parameters:
+        - configs: Dictionary containing all configurations information
+        - site_id: ID of the site we would like to assign the AP to
+        - device_id: ID of the AP that needs to be configured
+        - band: 2.4 or 5 depending on which radio needs to be configured
+
+    Returns: N/A
+    """
     radio_configs = {}
     radio_configs['radio_config'] = {}
 
@@ -101,8 +128,16 @@ def config_radio(configs, site_id, device_id, band):
         print('Something went wrong: {}'.format(response.status_code))
 
 
-# This function assigns an AP to a site
 def provision_ap(configs, site_id):
+    """
+    This function assigns an AP to a site
+
+    Parameters:
+        - configs: Dictionary containing all configurations information
+        - site_id: ID of the site we would like to assign the AP to
+
+    Returns:N/A
+    """
     ap_provision = {}
     ap_provision['name'] = configs['ap']['name']
     ap_provision['site_id'] = site_id
