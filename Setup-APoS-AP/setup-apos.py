@@ -7,7 +7,7 @@ Created on: April 30, 2020
 This script configured a Mist AP for an AP-on-a-Stick site survey
 """
 
-# from optparse import OptionParser
+
 import argparse
 import time
 import json
