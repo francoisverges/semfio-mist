@@ -18,6 +18,7 @@ import requests
 def does_site_exist(configs):
     """
     Check if the APoS site already exist
+    API Call Used: GET https://api.mist.com/api/v1/orgs/:org_id/sites
 
     Parameters:
         - configs: Dictionary containing all configurations information

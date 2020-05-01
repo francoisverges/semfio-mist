@@ -18,6 +18,7 @@ import requests
 def create_new_site(configs):
     """
     This function creates a new Site based on the information located in configs
+    API Call Used: POST https://api.mist.com/api/v1/orgs/:org_id/sites
 
     Parameters:
         - configs: Dictionary containing all configurations information
