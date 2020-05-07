@@ -51,8 +51,7 @@ def main():
         survey_ap_id = MistAp.provision_ap(configs, site_id)                             # Assigns the AP to the APoS Site
 
     survey_ap_id = MistSite.get_device_id(configs, configs['ap']['mac'], site_id)
-    MistAp.config_radio(configs, site_id, survey_ap_id, '24')                            # Configure 2.4GHz Radio of the APoS survey AP
-    MistAp.config_radio(configs, site_id, survey_ap_id, '5')                             # Configure 5GHz Radio of the APoS survey AP
+    MistAp.config_radio(configs, site_id, survey_ap_id)                            # Configure both radios of the APoS survey AP
 
 
 if __name__ == '__main__':

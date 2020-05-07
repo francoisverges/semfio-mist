@@ -87,7 +87,7 @@ def claim_ap(configs):
         print('Something went wrong: {}'.format(response.status_code))
 
 
-def config_radio(configs, site_id, device_id, band):
+def config_radio(configs, site_id, device_id):
     """
     This function configure radio settings of an AP
 
@@ -101,29 +101,25 @@ def config_radio(configs, site_id, device_id, band):
     """
     radio_configs = {}
     radio_configs['radio_config'] = {}
-
-    if band == '24':
-        radio_configs['radio_config']['band_24'] = {}
-        radio_configs['radio_config']['band_24']['power'] = configs['24ghz']['tx-power']
-        radio_configs['radio_config']['band_24']['channel'] = configs['24ghz']['channel']
-    elif band == '5':
-        radio_configs['radio_config']['band_5'] = {}
-        radio_configs['radio_config']['band_5']['power'] = configs['5ghz']['tx-power']
-        radio_configs['radio_config']['band_5']['bandwidth'] = configs['5ghz']['bandwidth']
-        radio_configs['radio_config']['band_5']['channel'] = configs['5ghz']['channel']
+    radio_configs['radio_config']['band_24'] = {}
+    radio_configs['radio_config']['band_24']['power'] = configs['24ghz']['tx-power']
+    radio_configs['radio_config']['band_24']['channel'] = configs['24ghz']['channel']
+    radio_configs['radio_config']['band_5'] = {}
+    radio_configs['radio_config']['band_5']['power'] = configs['5ghz']['tx-power']
+    radio_configs['radio_config']['band_5']['bandwidth'] = configs['5ghz']['bandwidth']
+    radio_configs['radio_config']['band_5']['channel'] = configs['5ghz']['channel']
 
     data_put = json.dumps(radio_configs)
-
     api_url = '{0}sites/{1}/devices/{2}'.format(configs['api']['mist_url'], site_id, device_id)
     headers = {'Content-Type': 'application/json',
                 'Authorization': 'Token {}'.format(configs['api']['token'])}
     response = requests.put(api_url, data=data_put, headers=headers)
 
     if response.status_code == 200:
-        if band == '24':
-            print('2.4GHz Radio Configured:\t\t\t\tCHANNEL={0}\tTX-POWER={1}'.format(configs['24ghz']['channel'], configs['24ghz']['tx-power']))
-        elif band == '5':
-            print('5GHz   Radio Configured:\t\t\t\tCHANNEL={0}/{1}\tTX-POWER={2}'.format(configs['5ghz']['channel'], configs['5ghz']['bandwidth'], configs['5ghz']['tx-power']))
+        new_site_response = json.loads(response.content.decode('utf-8'))
+        # print(json.dumps(new_site_response, indent=4, sort_keys=True))
+        print(f"2.4GHz Radio Configured:\t\t\t\tCHANNEL={new_site_response['radio_config']['band_24']['channel']}\tTX-POWER={new_site_response['radio_config']['band_24']['power']}")
+        print(f"5GHz   Radio Configured:\t\t\t\tCHANNEL={new_site_response['radio_config']['band_5']['channel']}/{new_site_response['radio_config']['band_5']['bandwidth']}\tTX-POWER={new_site_response['radio_config']['band_5']['power']}")
     else:
         print('Something went wrong: {}'.format(response.status_code))
 
