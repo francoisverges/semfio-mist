@@ -4,7 +4,7 @@
 Written by Francois Verges (@VergesFrancois)
 Created on: April 30, 2020
 
-This script configured a Mist AP for an AP-on-a-Stick site survey
+This script configures a Mist AP for an AP-on-a-Stick site survey
 """
 
 
@@ -51,7 +51,7 @@ def main():
         survey_ap_id = MistAp.provision_ap(configs, site_id)                             # Assigns the AP to the APoS Site
 
     survey_ap_id = MistSite.get_device_id(configs, configs['ap']['mac'], site_id)
-    MistAp.config_radio(configs, site_id, survey_ap_id)                            # Configure both radios of the APoS survey AP
+    MistAp.config_radio(configs, site_id, survey_ap_id)                                  # Configure both radios of the APoS survey AP
 
 
 if __name__ == '__main__':
@@ -59,5 +59,4 @@ if __name__ == '__main__':
     print('** Setting up APoS AP\n')
     main()
     run_time = time.time() - start_time
-    print("")
-    print("** Time to run: %s sec" % round(run_time,2))
+    print("\n** Time to run: %s sec" % round(run_time,2))
