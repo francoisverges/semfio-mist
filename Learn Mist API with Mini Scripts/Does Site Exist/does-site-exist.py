@@ -34,7 +34,7 @@ def does_site_exist(configs):
 
     if response.status_code == 200:
         sites = json.loads(response.content.decode('utf-8'))
-#        print(json.dumps(sites, indent=4, sort_keys=True))
+        print(json.dumps(sites, indent=4, sort_keys=True))
         for site in sites:
             if site['name'] == configs['site']['name']:
                 print('{0} site already exist.\t\t\t\tSITE ID={1}'.format(configs['site']['name'], site['id']))

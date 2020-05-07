@@ -42,8 +42,8 @@ def create_new_site(configs):
     new_site = json.loads(response.content.decode('utf-8'))
 
     if response.status_code == 200:
-        # new_site_response = json.loads(response.content.decode('utf-8'))
-        # print(json.dumps(new_site_response, indent=4, sort_keys=True))
+        #new_site_response = json.loads(response.content.decode('utf-8'))
+        #print(json.dumps(new_site_response, indent=4, sort_keys=True))
         print('{0} site was created.\t\t\t\tSITE ID={1}'.format(new_site['name'], new_site['id']))
     else:
         print('Something went wrong: {}'.format(response.status_code))
