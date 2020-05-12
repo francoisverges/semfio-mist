@@ -1,0 +1,15 @@
+{
+  "api": {
+    "org_id": "xxxxxxxx-xxxxx-xxxx-xxxx-xxxxxxxxxxxx",
+    "token": "4rUYcsePf....TA7Ea7AhsO",
+    "mist_url": "https://api.mist.com/api/v1/"
+  },
+
+  "site": {
+    "id": "xxxxxxxx-xxxxx-xxxx-xxxx-xxxxxxxxxxxx"
+  },
+
+  "wlan": {
+    "ssid": "SemFio Lab"
+  }
+}
