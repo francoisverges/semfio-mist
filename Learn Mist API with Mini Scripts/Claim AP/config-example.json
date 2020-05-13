@@ -1,0 +1,12 @@
+{
+  "api": {
+    "org_id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+    "token": "ApUYc...hsO",
+    "mist_url": "https://api.mist.com/api/v1/"
+  },
+
+  "ap": {
+    "mac": "aabbccddeeff",
+    "claim-code": "XXXXX-XXXXX-XXXX"
+  }
+}
