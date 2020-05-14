@@ -20,7 +20,7 @@ def list_wlans(configs):
     """
     This function list all WLAN profiles of a specific Mist Site
     API Call Used:
-        - GET https://{{host}}/api/v1/sites/:site_id/wlans
+        - GET https://api.mist.com/api/v1/sites/:site_id/wlans
 
     Parameters:
         - configs: Dictionary containing all configurations information
@@ -36,9 +36,10 @@ def list_wlans(configs):
     my_wlans = []
     if response.status_code == 200:
         wlans = json.loads(response.content.decode('utf-8'))
+        # print(json.dumps(wlans, indent=4, sort_keys=True))
         for wlan in wlans:
-            my_wlans.append([wlan['ssid'], wlan['id'], wlan['enabled']])
-        print(tabulate(my_wlans, headers=['SSID', 'ID', 'ACTIVE']))
+            my_wlans.append([wlan['ssid'], wlan['id'], wlan['enabled'], wlan['band']])
+        print(tabulate(my_wlans, headers=['SSID', 'ID', 'ACTIVE', 'BAND']))
         return(my_wlans)
     else:
         print(f"Something went wrong: {response.status_code}")
@@ -51,7 +52,7 @@ def main():
     """
     This function list all WLANs configured for a specific Site
     """
-    parser = argparse.ArgumentParser(description='Creates a Mist site within your organization')
+    parser = argparse.ArgumentParser(description='List all WLANS within a specific Mist Site')
     parser.add_argument('config', metavar='config_file', type=argparse.FileType(
         'r'), help='file containing all the configuration information')
     args = parser.parse_args()

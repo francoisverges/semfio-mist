@@ -44,8 +44,7 @@ def create_new_wlan(configs):
     new_wlan = json.loads(response.content.decode('utf-8'))
 
     if response.status_code == 200:
-        # new_site_response = json.loads(response.content.decode('utf-8'))
-        # print(json.dumps(new_site_response, indent=4, sort_keys=True))
+        print(json.dumps(new_wlan, indent=4, sort_keys=True))
         print('{0} WLAN was created.\t\t\t\tWLAN ID={1}'.format(new_wlan['ssid'], new_wlan['id']))
     else:
         print('Something went wrong: {}'.format(response.status_code))
@@ -57,7 +56,8 @@ def main():
     """
     This function configures a Mist WLAN profile within a specific site
     """
-    parser = argparse.ArgumentParser(description='Creates a Mist site within your organization')
+    parser = argparse.ArgumentParser(
+        description='Creates a Mist WLAN profile within a specific site')
     parser.add_argument('config', metavar='config_file', type=argparse.FileType(
         'r'), help='file containing all the configuration information')
     args = parser.parse_args()
