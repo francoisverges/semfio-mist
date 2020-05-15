@@ -1,0 +1,22 @@
+{
+  "api": {
+    "org_id": "<your-org-id>",
+    "token": "<your-token>",
+    "mist_url": "https://api.mist.com/api/v1/"
+  },
+
+  "site": {
+    "id" : "<your-site-id>",
+    "name": "<your-site-name>"
+  },
+
+  "ap": {
+    "mac": "<your-ap-mac-address>",
+    "name": "<your-ap-name>",
+    "map_id" : "<your-map-id>",
+    "x": <x-location-on-the-map>,
+    "y": <y-location-on-the-map>,
+    "height": <ap-height-in-m>,
+    "orientation": <ap-orientation-in-degrees>
+  }
+}
