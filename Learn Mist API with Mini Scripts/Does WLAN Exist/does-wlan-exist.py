@@ -34,6 +34,7 @@ def does_wlan_exist(configs):
 
     if response.status_code == 200:
         wlans = json.loads(response.content.decode('utf-8'))
+        # print(json.dumps(wlans, indent=4, sort_keys=True))
         for wlan in wlans:
             if wlan['ssid'] == configs['wlan']['ssid']:
                 print(f"YES - {wlan['ssid']} WLAN already exists.\t\t\tWLAN ID={wlan['id']}")

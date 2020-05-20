@@ -35,6 +35,7 @@ def delete_wlan(configs):
 
     if response.status_code == 200:
         wlans = json.loads(response.content.decode('utf-8'))
+        # print(json.dumps(wlans, indent=4, sort_keys=True))
         for wlan in wlans:
             if wlan['ssid'] == configs['wlan']['ssid']:
                 api_url_del = f"{configs['api']['mist_url']}sites/{configs['site']['id']}/wlans/{wlan['id']}"
