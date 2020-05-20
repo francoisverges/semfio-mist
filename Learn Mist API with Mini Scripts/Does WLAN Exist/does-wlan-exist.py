@@ -13,14 +13,13 @@ import argparse
 import time
 import json
 import requests
-from tabulate import tabulate
 
 
 def does_wlan_exist(configs):
     """
     This function checks if a WLAN profile exists within a specific Mist Site based on its SSID name
     API Call Used:
-        - GET https://{{host}}/api/v1/sites/:site_id/wlans
+        - GET https://api.mist.com/api/v1/sites/:site_id/wlans
 
     Parameters:
         - configs: Dictionary containing all configurations information
@@ -48,9 +47,9 @@ def does_wlan_exist(configs):
 
 def main():
     """
-    This function list all WLANs configured for a specific Site
+    This function validates if a WLAN profile already exists based on its name
     """
-    parser = argparse.ArgumentParser(description='Creates a Mist site within your organization')
+    parser = argparse.ArgumentParser(description='Validate if a Mist WLAN already exists or not within a Mist Site')
     parser.add_argument('config', metavar='config_file', type=argparse.FileType(
         'r'), help='file containing all the configuration information')
     args = parser.parse_args()
@@ -64,5 +63,4 @@ if __name__ == '__main__':
     print('** Is this WLAN already configured for your Site?\n')
     main()
     run_time = time.time() - start_time
-    print("")
-    print("** Time to run: %s sec" % round(run_time, 2))
+    print(f"\n** Time to run: {round(run_time, 2)} sec")

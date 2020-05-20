@@ -13,15 +13,14 @@ import argparse
 import time
 import json
 import requests
-from pprint import pprint
 
 
 def delete_wlan(configs):
     """
     This function deletes a new WLAN profile based on the information located in config file
     API Call Used:
-        - GET https://{{host}}/api/v1/sites/:site_id/wlans
-        - DELETE https://{{host}}/api/v1/sites/:site_id/wlans/:wlan_id
+        - GET https://api.mist.com/api/v1/sites/:site_id/wlans
+        - DELETE https://api.mist.com/api/v1/sites/:site_id/wlans/:wlan_id
 
     Parameters:
         - configs: Dictionary containing all configurations information
@@ -56,7 +55,7 @@ def main():
     """
     This function deletes a Mist WLAN profile within a specific site
     """
-    parser = argparse.ArgumentParser(description='Creates a Mist site within your organization')
+    parser = argparse.ArgumentParser(description='Deletes a Mist site within your site')
     parser.add_argument('config', metavar='config_file', type=argparse.FileType(
         'r'), help='file containing all the configuration information')
     args = parser.parse_args()
@@ -70,5 +69,4 @@ if __name__ == '__main__':
     print('** Deleting a Mist Site...\n')
     main()
     run_time = time.time() - start_time
-    print("")
-    print("** Time to run: %s sec" % round(run_time, 2))
+    print(f"\n** Time to run: {round(run_time, 2)} sec")
