@@ -50,7 +50,8 @@ def main():
     """
     This function validates if a WLAN profile already exists based on its name
     """
-    parser = argparse.ArgumentParser(description='Validate if a Mist WLAN already exists or not within a Mist Site')
+    parser = argparse.ArgumentParser(
+        description='Validate if a Mist WLAN already exists or not within a Mist Site')
     parser.add_argument('config', metavar='config_file', type=argparse.FileType(
         'r'), help='file containing all the configuration information')
     args = parser.parse_args()
