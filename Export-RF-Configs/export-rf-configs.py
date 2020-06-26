@@ -13,6 +13,7 @@ import json
 import requests
 import csv
 from tabulate import tabulate
+from pprint import pprint
 
 
 def export_ap_rf_congs_to_file(aps_rf_configs):
@@ -31,12 +32,17 @@ def export_ap_rf_congs_to_file(aps_rf_configs):
 
         for ap in aps_rf_configs:
             ap_count += 1
-            config_writer.writerow([ap['name'], ap['model'], ap['mac'], ap['ip'],
-                                    ap['band_24']['channel'],
-                                    str(ap['band_24']['power']) + "dBm",
-                                    ap['band_5']['channel'],
-                                    str(ap['band_5']['bandwidth']) + "MHz",
-                                    str(ap['band_5']['power']) + "dBm"])
+            pprint(ap)
+            if ap['status'] == "connected":
+                config_writer.writerow([ap['name'], ap['model'], ap['mac'], ap['ip'],
+                                        ap['band_24']['channel'],
+                                        str(ap['band_24']['power']) + "dBm",
+                                        ap['band_5']['channel'],
+                                        str(ap['band_5']['bandwidth']) + "MHz",
+                                        str(ap['band_5']['power']) + "dBm"])
+            else:
+                config_writer.writerow([ap['name'], ap['model'], ap['mac'], "N/A",
+                                        "N/A", "N/A", "N/A", "N/A", "N/A"])
 
     print(f"* AP RF configuration exported!\t\tNb of APs: {ap_count}")
 
@@ -66,15 +72,17 @@ def get_ap_rf_configs(configs):
             if device['type'] == "ap":
                 ap_rf_configs = {}
                 ap_rf_configs['id'] = device['id']
-                ap_rf_configs['name'] = device['name']
+                ap_rf_configs['name'] = device['name'] if len(device['name']) > 0 else "N/A"
                 ap_rf_configs['model'] = device['model']
                 ap_rf_configs['mac'] = device['mac']
-                ap_rf_configs['ip'] = device['ip']
-                ap_rf_configs['band_24'] = {"channel": device['radio_stat']['band_24']['channel'],
-                                            "power": device['radio_stat']['band_24']['power']}
-                ap_rf_configs['band_5'] = {"channel": device['radio_stat']['band_5']['channel'],
-                                           "power": device['radio_stat']['band_5']['power'],
-                                           "bandwidth": device['radio_stat']['band_5']['bandwidth']}
+                ap_rf_configs['status'] = device['status']
+                if device['status'] == "connected":
+                    ap_rf_configs['ip'] = device['ip']
+                    ap_rf_configs['band_24'] = {"channel": device['radio_stat']['band_24']['channel'],
+                                                "power": device['radio_stat']['band_24']['power']}
+                    ap_rf_configs['band_5'] = {"channel": device['radio_stat']['band_5']['channel'],
+                                               "power": device['radio_stat']['band_5']['power'],
+                                               "bandwidth": device['radio_stat']['band_5']['bandwidth']}
                 aps_rf_configs.append(ap_rf_configs)
     else:
         print(f"Something went wrong: {response.status_code}")
