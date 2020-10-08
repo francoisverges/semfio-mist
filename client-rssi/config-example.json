@@ -1,0 +1,9 @@
+{
+  "org_id": "<your-org-id>",
+  "site": {
+    "id": "<your-side-id>"
+  },
+  "clients": {
+    "mac": "<client-mac-address>"
+  }
+}
