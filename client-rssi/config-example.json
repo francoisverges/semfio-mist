@@ -1,5 +1,6 @@
 {
   "org_id": "<your-org-id>",
+  "token": "<your-mist-api-token>",
   "site": {
     "id": "<your-side-id>"
   },
