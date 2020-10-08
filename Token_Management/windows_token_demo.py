@@ -1,4 +1,4 @@
-"""
+"""THANK YOU NIGEL.
 
 This script that demonsrates how to use token_class.py on Windows
 
