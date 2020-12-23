@@ -1,0 +1,26 @@
+site_name,site_group,site_address,rf_template
+"Stade de France",Ligue_1,"93200 Saint-Denis, France", Stadium_FR
+"Rogers Centre",MLS,"1 Blue Jays Way, Toronto, ON M5V 1J1", Stadium_CA
+Maracana,CBF,"Av. Pres. Castelo Branco, Portão 3 - Maracanã, Rio de Janeiro - RJ, 20271-130, Brazil", Stadium_BR
+"Groupama Stadium",Ligue_1,"10 Avenue Simone Veil, 69150 Décines-Charpieu, France", Stadium_FR
+Velodrome,Ligue_1,"3 Boulevard Michelet, 13008 Marseille, France", Stadium_FR
+"Stade Pierre Mauroy",Ligue_1,"261 Boulevard de Tournai, 59650 Villeneuve-d'Ascq, France", Stadium_FR
+"Emirates Stadium",Premier_League,"Hornsey Rd, London N7 7AJ, United Kingdom",Stadium_UK
+"Stamford Bridge",Premier_League,"Fulham Rd, Fulham, London SW6 1HS, United Kingdom",Stadium_UK
+"Old Trafford",Premier_League,"Sir Matt Busby Way, Old Trafford, Stretford, Manchester M16 0RA, United Kingdom",Stadium_UK
+Anfield,Premier_League,"Anfield Rd, Anfield, Liverpool L4 0TH, United Kingdom",Stadium_UK
+"Camp Nou",Liga,"C. d'Arístides Maillol, 12, 08028 Barcelona, Spain",Stadium_SP
+"Santiago Bernabeu",Liga,"Av. de Concha Espina, 1, 28036 Madrid, Spain",Stadium_SP
+"Allianz Arena",Bundesliga,"Werner-Heisenberg-Allee 25, 80939 München, Germany",Stadium_GE
+"Signal Iduna Park",Bundesliga,"Strobelallee 50, 44139 Dortmund, Germany",Stadium_GE
+"Allianz Juventus Stadium",Serie_A,"Corso Gaetano Scirea, 50, 10151 Torino TO, Italy",Stadium_IT
+"San Siro",Serie_A,"Via Piccolomini, 5, 20151 Milan Italy",Stadium_IT
+"Luzhniki Stadium",Russian_Premier_League,"ul. Luzhniki, 24, Moscow, Russia, 119048",Stadium_RU
+"Stadio Olimpico",Serie_A,"Viale dei Gladiatori, 00135 Rome, Italy",Stadium_IT
+Olympiastadion,Bundesliga,"Olympischer Platz 3, 14053 Berlin, Germany",Stadium_GE
+"Metropolitano Stadium",Liga,"Av. Luis Aragones, 4, 28022 Madrid, Spain",Stadium_SP
+"Estádio da Luz",Primeira_Liga,"Av. Eusébio da Silva Ferreira, 1500-313 Lisboa, Portugal",Stadium_PT
+"Estádio do Dragão",Primeira_Liga,"Via Futebol Clube do Porto, 4350-415 Porto, Portugal",Stadium_PT
+"Matmut Atlantique",Ligue_1,"Cours Jules-Ladoumègue, 33300 Bordeaux, Gironde, France",Stadium_FR
+"Stade Gaston Gérard",Ligue_1,"Place Gaston Gérard, 21000 Dijon, France",Stadium_FR
+"Stade Louis II",Ligue_1,"7 Avenue des Castelans, 98000 Monaco",Stadium_FR
