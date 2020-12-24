@@ -31,31 +31,41 @@ def main():
     config = script_args_parser()
     api = API(config)
 
-    # Retrieve list of APs and their current stats
-    aps = api.get(f"sites/{config.data['site']['id']}/stats/devices")
+    # Retrieve the list of sites within my Org
+    sites = api.get(f"orgs/{config.data['org_id']}/sites")
 
-    # Creation of the table header (for printing results)
-    table = PrettyTable(['AP Name', '2.4 Ch.', '2.4 Util.',
-                         '2.4 Clts', '5 Ch.', '5 Util.', '5 Clts'])
+    for site in sites:
 
-    # Looping on each APs to retreive relevant stats (channel utilizations)
-    for ap in aps:
-        if ap['type'] == 'ap':
-            ap_mon_data = []
-            ap_mon_data.append(ap['name'])
+        # Retrieve list of APs and their current stats
+        aps = api.get(f"sites/{site['id']}/stats/devices")
 
-            if ap['status'] == 'connected':
-                ap_mon_data.append(ap['radio_stat']['band_24']['channel'])
-                ap_mon_data.append(f"{ap['radio_stat']['band_24']['util_all']}%")
-                ap_mon_data.append(ap['radio_stat']['band_24']['num_clients'])
-                ap_mon_data.append(
-                    f"{ap['radio_stat']['band_5']['channel']}({ap['radio_stat']['band_5']['bandwidth']})")
-                ap_mon_data.append(f"{ap['radio_stat']['band_5']['util_all']}%")
-                ap_mon_data.append(ap['radio_stat']['band_5']['num_clients'])
-                table.add_row(ap_mon_data)
+        # Creation of the table header (for printing results)
+        table = PrettyTable(['AP Name', '2.4 Ch.', '2.4 Util.',
+                             '2.4 Clts', '5 Ch.', '5 Util.', '5 Clts'])
 
-    # Displaying the results sorting them by 5GHz channel utilization
-    print(table.get_string(sortby="5 Util.", reversesort=True))
+        # Looping on each APs to retreive relevant stats (channel utilizations)
+        nb_ap_connected = 0
+        for ap in aps:
+            if ap['type'] == 'ap':
+                ap_mon_data = []
+                ap_mon_data.append(ap['name'])
+
+                if ap['status'] == 'connected':
+                    nb_ap_connected += 1
+                    ap_mon_data.append(ap['radio_stat']['band_24']['channel'])
+                    ap_mon_data.append(f"{ap['radio_stat']['band_24']['util_all']}%")
+                    ap_mon_data.append(ap['radio_stat']['band_24']['num_clients'])
+                    ap_mon_data.append(
+                        f"{ap['radio_stat']['band_5']['channel']}({ap['radio_stat']['band_5']['bandwidth']})")
+                    ap_mon_data.append(f"{ap['radio_stat']['band_5']['util_all']}%")
+                    ap_mon_data.append(ap['radio_stat']['band_5']['num_clients'])
+                    table.add_row(ap_mon_data)
+
+        # Displaying the results sorting them by 5GHz channel utilization
+        print(f"SITE: {site['name']}\t\tAPs Online: {nb_ap_connected}")
+        if (nb_ap_connected != 0):
+            print(table.get_string(sortby="5 Util.", reversesort=True))
+        print()
 
     api.__exit__()
 

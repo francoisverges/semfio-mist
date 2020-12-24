@@ -1,9 +1,9 @@
 import time
 import argparse
 
-from pymist.config import Config
-from pymist.mist_api import API
-from pymist.logger import logger
+from semfio_mist import Config
+from semfio_mist import API
+from semfio_mist import logger
 
 
 def script_args_parser() -> Config:
