@@ -4,10 +4,10 @@ import argparse
 import csv
 import geocoder
 
-from pymist.config import Config
-from pymist.logger import logger
-from pymist.mist_api import API
-from pymist.mist_site import Site
+from semfio_mist import Config
+from semfio_mist import logger
+from semfio_mist import API
+from semfio_mist import Site
 
 
 def retreive_csv_data(csv_filename: str) -> dict:
